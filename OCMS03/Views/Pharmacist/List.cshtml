@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OCMS03.Models.Patient_Medication>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_PharmacistLayout.cshtml";
+}
+
+<div class="header bg-white pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a asp-controller="Pharmacist" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+                            <li class="breadcrumb-item"><a asp-controller="Pharmacist" asp-action="PrescriptionDetails">Prescription Details</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Prescriptions</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped">
+        <tr><th class="text-center font-weight-bolder">Full Name(Patient)</th>
+        <th class="text-center font-weight-bolder">Date</th>
+        <th class="text-center font-weight-bolder">Issue By(Pharmacist)</th>
+        <th class="text-center font-weight-bolder" colspan="5">Details</th></tr>
+        @foreach (Patient_Medication p in Model)
+        {
+            <tr>
+                <td>@p.Patient.FullName</td>
+                <td>@p.Date.ToShortDateString()</td>
+                <td>@p.Pharmacist.FullName</td>
+                <th>Medication</th>
+                <th>Dose</th>
+                <th>Frequency</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (CartLine line in p.Lines)
+            {
+                <tr>
+                    <td colspan="3"></td>
+                    <td>@line.Medication.ProductName</td>
+                    <td>@line.Dose</td>
+                    <td>@line.Duration</td>
+                    <td>@line.Frequency</td>
+                    <td>
+                        <a asp-action="IssueMedication" asp-route-id="@p.Patient_MedsId" class="btn btn-sm btn-danger">
+                                Issue Medication
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <div class="text-center">No Uncollected Medication</div>
+}
+

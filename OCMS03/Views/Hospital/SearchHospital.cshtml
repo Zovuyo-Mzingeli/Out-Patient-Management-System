@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OCMS03.Models.Content.Hospital>
+
+@{
+    ViewData["Title"] = "SearchHospital";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet" />
+    <link href="~/search/findloaction/css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="s002">
+        <form>
+            <fieldset>
+                <legend>SEARCH Hospital</legend>
+            </fieldset>
+            <div class="inner-form">
+                <div class="input-field fouth-wrap">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                    </div>
+                    <select data-trigger="" name="choices-single-default">
+                        <option placeholder="">Province</option>
+                        <option>3 Adults</option>
+                        <option>4 Adults</option>
+                        <option>5 Adults</option>
+                    </select>
+                </div>
+                <div class="input-field first-wrap">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                    </div>
+                    <input id="search" type="text" placeholder="Enter City Name" />
+                </div>
+                <div class="input-field first-wrap">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                    </div>
+                    <input id="search" type="text" placeholder="Clinic Name" />
+                </div>
+
+                <div class="input-field fifth-wrap">
+                    <button class="btn-search" type="button">SEARCH</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="~/search/findloaction/js/extention/choices.js"></script>
+    <script src="~/search/findloaction/js/extention/flatpickr.js"></script>
+    <script>
+        flatpickr(".datepicker",
+            {});
+
+    </script>
+    <script>
+        const choices = new Choices('[data-trigger]',
+            {
+                searchEnabled: false,
+                itemSelectText: '',
+            });
+
+    </script>
+</body>
+</html>
+

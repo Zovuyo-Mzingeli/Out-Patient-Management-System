@@ -1,0 +1,60 @@
+﻿@model OCMS03.Models.ViewModels.UserLoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+    <div class="hero-wrap" style="background-image: url(/images/bg_5.jpg); background-attachment:fixed;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-8 ftco-animate text-center fadeInUp ftco-animated">
+                    <div class="card">
+                        <div class="card-header bg-info text-center text-black">Login</div>
+                        <div class="card-body bg-transparent text-black-50 text-left">
+                            <form asp-action="Login" method="post">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password"></label>
+                                    <input asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label asp-for="RememberMe">
+                                            <input asp-for="RememberMe" />
+                                            @Html.DisplayNameFor(m => m.RememberMe)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Login" class="btn btn-primary btn-lg btn-block" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <p>
+                                                <a asp-action="ForgotPassword" asp-route-returnurl="@ViewData["ReturnUrl"]">Forgot your password?</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <p>
+                                                <a asp-area="Identity" asp-controller="Account" asp-action="Register">Register as a new user</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

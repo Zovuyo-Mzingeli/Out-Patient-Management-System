@@ -1,0 +1,49 @@
+﻿@model OCMS03.Models.Content.Allergy
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Allergies</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-info fa-sm text-white"></i>
+    </a>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-action="AddOrEdit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+            <input type="hidden" asp-for="AllergyId" />
+            <div class="form-group row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="AllergyTypeName">Allergy Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-plus-circle"></i></div>
+                            </div>
+                            <input asp-for="AllergyTypeName" class="form-control" placeholder="Allergy Name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-icon-text btn-sm">
+                    <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                    @(Model.AllergyId != null ? "Update" : "Create")
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-icon-text btn-sm">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i>
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

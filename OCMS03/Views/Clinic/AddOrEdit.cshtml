@@ -1,0 +1,137 @@
+﻿@model OCMS03.Models.Content.Clinic
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Clinic</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-info fa-sm text-white"></i>
+    </a>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-action="AddOrEdit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+            <input type="hidden" asp-for="ClinicId" />
+            <div class="pl-lg-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="ClinicName">Clinic Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-hospital-0"></i></div>
+                                </div>
+                                <input asp-for="ClinicName" class="form-control" placeholder="Clinic Name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="AddressLine1">AddressLine1</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-street-view"></i></div>
+                                </div>
+                                <input asp-for="AddressLine1" class="form-control" placeholder="Stress/House Number" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="AddressLine2">AddressLine2</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-street-view"></i></div>
+                                </div>
+                                <input asp-for="AddressLine2" class="form-control" placeholder="Stress Address" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="ProvinceId">Province</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-map-pin"></i></div>
+                                </div>
+                                <select asp-for="ProvinceId" class="form-control" asp-items="ViewBag.ProvinceId">
+                                    <option value="" class="option">Select Province</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="CityId">City/Suburb</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-map-marker"></i></div>
+                                </div>
+                                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
+                                    <option value="" class="option">Select City/Suburb</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="PostalCode">PostalCode/ZIP</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-code"></i></div>
+                                </div>
+                                <input asp-for="PostalCode" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="Telephone">Telphones</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-phone"></i></div>
+                                </div>
+                                <input asp-for="Telephone" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="FaxNumber">Fax Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-fax"></i></div>
+                                </div>
+                                <input asp-for="FaxNumber" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-icon-text btn-sm">
+                    <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                    @(Model.ClinicId != null ? "Update" : "Create")
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-icon-text btn-sm">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i>
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,401 @@
+﻿@model OCMS03.Models.ViewModels.EditUserViewModel
+
+@{
+    ViewData["Title"] = "EditUser";
+    Layout = "~/Views/Shared/_PharmacistLayout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="UserDetails">Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+    </nav>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-info fa-sm text-white"></i>
+    </a>
+</div>
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"> </h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="EditUser" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Username">Your Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                    </div>
+                                    <input asp-for="Username" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="ProfileImage">Profile Picture</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account"></i></div>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input asp-for="ProfileImage" accept="image/*" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="FirstName">First Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                    </div>
+                                    <input asp-for="FirstName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="LastName">Last Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                    </div>
+                                    <input asp-for="LastName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Title">Title</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-format-size"></i></div>
+                                    </div>
+                                    <select asp-for="Title" class="form-control">
+                                        <option value="" class="option">Select Title</option>
+                                        <option value="Mr" class="option">Mr</option>
+                                        <option value="Mrs" class="option">Mrs</option>
+                                        <option value="Miss" class="option">Miss</option>
+                                        <option value="Dr" class="option">Dr</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Gender">Gender</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-male-female"></i></div>
+                                    </div>
+                                    <select asp-for="Gender" class="form-control">
+                                        <option value="" class="option">Select Gender</option>
+                                        <option value="Male" class="option">Male</option>
+                                        <option value="Female" class="option">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Dob">Date Of Birth</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-calendar"></i></div>
+                                    </div>
+                                    <input asp-for="Dob" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Idnumber">ID No:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-assignment-account"></i></div>
+                                    </div>
+                                    <input asp-for="Idnumber" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Race">Race</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-male-female"></i></div>
+                                    </div>
+                                    <select asp-for="Race" class="form-control">
+                                        <option value="" class="option">Select Race</option>
+                                        <option value="Black" class="option">Black</option>
+                                        <option value="Colored" class="option">Colored</option>
+                                        <option value="Indian" class="option">Indian</option>
+                                        <option value="White" class="option">White</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Citizenship">Citizenship</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="mdi mdi-map-legend"></i></div>
+                                    </div>
+                                    <select asp-for="Citizenship" class="form-control">
+                                        <option value="" class="option">Select Citizenship</option>
+                                        <option value="South African By Birth" class="option">South African By Birth</option>
+                                        <option value="South African By Nuturalisation" class="option">South African By Nuturalisation</option>
+                                        <option value="International" class="option">International</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Nationality">Nationality</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-google-maps"></i></div>
+                                    </div>
+                                    <input asp-for="Nationality" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Occupation">Occupation</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-assignment-o"></i></div>
+                                    </div>
+                                    <input asp-for="Occupation" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Specialization">Specialization</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-spellcheck"></i></div>
+                                    </div>
+                                    <input asp-for="Specialization" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Email">Email Address</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-email"></i></div>
+                                    </div>
+                                    <input asp-for="Email" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="PhoneNumber">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-smartphone-android"></i></div>
+                                    </div>
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="AddressLine1">AddressLine1</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-home"></i></div>
+                                    </div>
+                                    <input asp-for="AddressLine1" class="form-control" placeholder="Stress/House Number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="AddressLine2">AddressLine2</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-pin"></i></div>
+                                    </div>
+                                    <input asp-for="AddressLine2" class="form-control" placeholder="Stress Address" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="ProvinceId">Province</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-pin"></i></div>
+                                    </div>
+                                    <select asp-for="ProvinceId" class="form-control" asp-items="ViewBag.ProvinceId">
+                                        <option value="" class="option">Select Province</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="CityId">City/Suburb</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-pin-drop"></i></div>
+                                    </div>
+                                    <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
+                                        <option value="" class="option">Select City/Suburb</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="PostalCode">PostalCode/ZIP</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-eye"></i></div>
+                                    </div>
+                                    <input asp-for="PostalCode" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <h6 class="heading-small text-muted mb-4">Next Of Kin Information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="NextOfName">First Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                    </div>
+                                    <input asp-for="NextOfName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="NextOfKinSurname">Last Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                    </div>
+                                    <input asp-for="NextOfKinSurname" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Relationship">Relationship</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-format-size"></i></div>
+                                    </div>
+                                    <select asp-for="Relationship" class="form-control">
+                                        <option value="" class="option">Select Relationship</option>
+                                        <option value="Guardian" class="option">Guardian</option>
+                                        <option value="Father" class="option">Father</option>
+                                        <option value="Mother" class="option">Mother</option>
+                                        <option value="Brother" class="option">Brother</option>
+                                        <option value="Sister" class="option">Sister</option>
+                                        <option value="Cousin" class="option">Cousin</option>
+                                        <option value="Foster Parent" class="option">Foster Parent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="NextOfKinNumber">Phone Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-smartphone-android"></i></div>
+                                    </div>
+                                    <input asp-for="NextOfKinNumber" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="pl-lg-4">
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm btn-block" />
+                        @*<a asp-action="Index" class="btn btn-primary btn-sm btn-block" />*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });</script>
+}
+

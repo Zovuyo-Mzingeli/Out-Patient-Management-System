@@ -1,0 +1,133 @@
+﻿@model OCMS03.Models.ViewModels.DoctorViewModel.DoctorScheduleViewModel
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Doctor" asp-action="Schedule"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Doctor" asp-action="Schedule">Appointment</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Daily Schedule</li>
+        </ol>
+    </nav>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-info fa-sm text-white"></i>
+    </a>
+</div>
+  
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="heading-small text-muted mb-4">Your Appointment</h6>
+            <div class="pl-lg-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" asp-for="Date">Search By Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="zmdi zmdi-alarm-off"></i></div>
+                                            </div>
+                                            <input asp-for="Date" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label"></label>
+                                        <input type="submit" value="View Schedule" class="btn btn-primary btn-lg btn-block" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br />
+                @{ 
+                    if (Model.Date == null)
+                    {
+                        <h3>Date: @DateTime.Now.Date.ToShortDateString()</h3> 
+                    }
+                    else
+                    {
+                        <h3>Date: @Model.Date.Date.ToShortDateString()</h3> 
+                    } 
+                 }
+                <table class="table-responsive table">
+                    <thead>
+                        @if (Model.Appointments.Count() == 0)
+                        {
+                            <tr>
+                                <th scope="row" colspan="6" class="text-center">All time slot are available from 08:00 to 18:00</th>
+                            </tr>
+                        }
+                        else
+                        {
+                            var startTime = DateTime.Parse("08:00:00");
+                            var endTime = startTime.AddHours(10);
+                            while (startTime <= endTime)
+                            {
+                                string hour = startTime.ToShortTimeString();
+                                string patientName = "Available";
+                                DateTime date = DateTime.Today;
+                                bool isThere = false;
+
+                                foreach (var appointment in Model.Appointments)
+                                {
+                                    if (startTime.TimeOfDay == appointment.StartTime && Model.Date == appointment.AppointmentDate)
+                                    {
+                                        patientName = "Booked";
+                                        isThere = true;
+                                    }
+                                }
+
+                                <tr>
+                                    @if (isThere == true)
+                                    {
+                                        <td class="text-center vertical-align-md" style="width: 20%;">
+                                            <div style="border-right: 4px solid @(isThere ? "orange" : "green")">
+                                                <i class="zmdi zmdi-time"></i>&nbsp; @hour
+                                            </div>
+                                        </td>
+                                        <td class="vertical-align-md" style="width: 15%">
+                                            <span class="text-warning">@patientName</span>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center vertical-align-md" style="width: 20%;">
+                                            <div style="border-right: 4px solid @(isThere ? "orange" : "green")">
+                                                <i class="zmdi zmdi-time"></i>&nbsp; @hour
+                                            </div>
+                                        </td>
+                                        <td><span class="text-success">@patientName</span></td>
+                                    }
+
+                                </tr>
+                            startTime = startTime.AddMinutes(15);
+                        }
+                    }
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

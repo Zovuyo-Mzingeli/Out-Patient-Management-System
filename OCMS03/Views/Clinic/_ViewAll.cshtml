@@ -1,0 +1,68 @@
+﻿@model IEnumerable<OCMS03.Models.Content.Clinic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">Clinic</h4>
+    </div>
+    <div class="col-sm-8 col-9 text-right m-b-20">
+        <a asp-action="AddOrEdit" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Clinic</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border table-striped custom-table datatable mb-0">
+                <thead>
+                    <tr>
+                        <th>Clinic Name</th>
+                        <th>AddressLine</th>
+                        <th>Province</th>
+                        <th>City</th>
+                        <th>Telephone</th>
+                        <th>Fax Number</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClinicName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AddressLine1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Province.ProvinceName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City.CityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telephone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FaxNumber)
+                            </td>
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" asp-action="AddOrEdit" asp-route-id="@item.ClinicId"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.ClinicId"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

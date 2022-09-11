@@ -1,0 +1,71 @@
+﻿@model OCMS03.Models.ViewModels.ExaminationViewModel
+
+@{
+    ViewData["Title"] = "Examination";
+    Layout = "~/Views/Shared/_TabLayout.cshtml";
+}
+
+<form asp-action="Examination" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+    <input type="hidden" asp-for="DiagnosisCode" />
+    <hr class="my-4" />
+    <div class="form-row">
+        <div class="pl-lg-3 col-lg-12">
+            <div class="form-group">
+                <div class="pl-lg-4 form-inline row col-md-6">
+                    <label class="form-control-label text-left" asp-for="PatientName">Patient Name:</label>
+                </div>
+                <div class="col-lg input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                    </div>
+                    <select asp-for="PatientName" class="form-control" asp-items="@Model.Patients">
+                        <option value="" class="option">Select Patient Details</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Examination Notes</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                         aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Diagnosis History:</div>
+                        <a class="dropdown-item" href="#">Search By Date</a>
+                        <a class="dropdown-item" href="#">Search By Patient</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Print</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <textarea asp-for="ExaminationNotes" style="height: 250px; max-width: 100%; width: 100%"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-primary btn-icon-text  btn-lg">
+                    <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                    Create
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary btn-icon-text  btn-lg">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i>
+                    Back
+                </a>
+            </div>
+        </div>
+    </div>
+</form>

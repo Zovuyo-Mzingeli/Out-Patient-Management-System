@@ -1,0 +1,86 @@
+﻿<div class ="col-lg-12 ">
+    <p>Prescription</p>
+    </div>
+
+
+
+
+    @*<div class="col-xs-12 ">
+        <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-examination-tab" data-toggle="tab" href="#nav-examination" role="tab" aria-controls="nav-examination" aria-selected="true">Examination</a>
+                <a class="nav-item nav-link" id="nav-vitals-tab" data-toggle="tab" href="#nav-vitals" role="tab" aria-controls="nav-vitals" aria-selected="true">Vitals</a>
+                <a class="nav-item nav-link" id="nav-allergies-tab" data-toggle="tab" href="#nav-allergies" role="tab" aria-controls="nav-allergies" aria-selected="false">Allergies</a>
+                <a class="nav-item nav-link" id="nav-prescription-tab" data-toggle="tab" href="#nav-prescription" role="tab" aria-controls="nav-prescription" aria-selected="false">Prescription</a>
+                <a class="nav-item nav-link" id="nav-referral-tab" data-toggle="tab" href="#nav-referral" role="tab" aria-controls="nav-referral" aria-selected="false">Pateint Referral</a>
+            </div>
+        </nav>
+        <div class="tab-content py-3 px-3 px-sm-4" id="nav-tabContent">
+            <form asp-action="AddOrEdit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                <input type="hidden" asp-for="DiagnosisCode" />
+                <input type="hidden" asp-for="AllergyId" />
+                <div class="row pl-lg-3">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="PatientId" class="control-label">Patient Name</label>
+                            <input asp-for="PatientId" class="form-control" />
+                            <span asp-validation-for="PatientId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CheckInDate" class="control-label">Checkin Date</label>
+                            <input asp-for="CheckInDate" class="form-control" />
+                            <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="nav-examination" role="tabpanel" aria-labelledby="nav-examination-tab">
+                    <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Examination Notes</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                         aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Examination Notes History:</div>
+                                        <a class="dropdown-item" href="#">Date</a>
+                                        <a class="dropdown-item" href="#">Months</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Search By Patient</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <div class="form-group">
+                                        <label asp-for="ExaminationNotes" class="control-label">Diagnose Notes</label>
+                                        <div class="form-group">
+                                            <textarea asp-for="ExaminationNotes" style="height: 200px; width: 1370px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-vitals" role="tabpanel" aria-labelledby="nav-vitals-tab">
+                    Vitals
+                </div>
+                <div class="tab-pane fade" id="nav-allergies" role="tabpanel" aria-labelledby="nav-allergies-tab">
+                    Allergies
+                </div>
+                <div class="tab-pane fade" id="nav-prescription" role="tabpanel" aria-labelledby="nav-prescription-tab">
+                    Prescription
+                </div>
+                <div class="tab-pane fade" id="nav-referral" role="tabpanel" aria-labelledby="nav-referral-tab">
+                    Referral
+                </div>
+            </form>
+        </div>*@

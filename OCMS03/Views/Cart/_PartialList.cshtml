@@ -1,0 +1,22 @@
+﻿@model OCMS03.Models.ViewModels.PrescriptionFormViewModel
+
+
+@foreach (var line in Model.Cart.Lines)
+{
+    <tr>
+        <td class="text-center">@line.Medication.ProductName</td>
+        <td class="text-left">@line.Duration</td>
+        <td class="text-left">@line.Frequency</td>
+        <td>
+            <form asp-action="RemoveFromCart" method="post">
+                <input type="hidden" name="Medication"
+                       value="@line.Medication.MedicationId" />
+                <input type="hidden" name="returnUrl"
+                       value="@Model.ReturnUrl" />
+                <button type="submit" class="btn btn-danger">
+                    Remove
+                </button>
+            </form>
+        </td>
+    </tr>
+}

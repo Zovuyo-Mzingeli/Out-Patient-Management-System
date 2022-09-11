@@ -1,0 +1,114 @@
+﻿@model OCMS03.Models.ViewModels.Patient_AllergyDiagnosisVM
+
+@{
+    ViewData["Title"] = "SaveAllergyD";
+    Layout = "~/Views/Shared/_TabLayout.cshtml";
+}
+
+<div class="header bg-white pb-1">
+    <div class="col-xl-12 order-xl-1">
+        <div class="pl-lg-4">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form asp-action="Allergies" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger text-left"></div>
+                        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                        <input type="hidden" asp-for="PatientAllergyDiagnosisId" />
+                        <hr class="my-4" />
+                        <div class="form-row">
+                            <div class="pl-lg-3 col-lg-12">
+                                <div class="form-group">
+                                    <div class="pl-lg-4 form-inline row col-md-6">
+                                        <label class="form-control-label text-left" asp-for="PatientName">Patient Name:</label>
+                                    </div>
+                                    <div class="col-lg input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                        </div>
+                                        <select asp-for="PatientName" class="form-control" asp-items="@Model.Patients">
+                                            <option value="" class="option">Select Patient Details</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="pl-lg-3 col-lg-12">
+                                <div class="form-group">
+                                    <div class="pl-lg-4 form-inline row col-md-6">
+                                        <label class="form-control-label text-left" asp-for="AllergyName">Allergy Type</label>
+                                    </div>
+                                    <div class="col-lg input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="zmdi zmdi"></i></div>
+                                        </div>
+                                        <select asp-for="AllergyName" class="standardSelect form-control" tabindex="1" asp-items="ViewBag.AllergyId">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-inline row col-md-6">
+                                        <label class="form-control-label text-left" asp-for="PhysicalExamNotes">Allergy Physical Examination:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea asp-for="PhysicalExamNotes" style="height: 100px;  max-width: 100%; width: 100%"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-inline row col-md-6">
+                                        <label class="form-control-label text-left" asp-for="AllergyDiagnoseTestType">Allergies Diagnoses Test:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea asp-for="AllergyDiagnoseTestType" style="height: 100px;  max-width: 100%; width: 100%"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-inline row col-md-6">
+                                        <label class="form-control-label text-left" asp-for="AllergySymptoms">Allergies Symptoms:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea asp-for="AllergySymptoms" style="height: 100px;  max-width: 100%; width: 100%"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary btn-icon-text  btn-lg">
+                                <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                                Create
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-icon-text  btn-lg">
+                                <i class="mdi mdi-reload btn-icon-prepend"></i>
+                                Back
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

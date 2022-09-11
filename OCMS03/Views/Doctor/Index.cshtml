@@ -1,0 +1,161 @@
+﻿@model OCMS03.Models.ViewModels.DoctorViewModel.DoctorScheduleViewModel
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+
+<div id="PlaceholderHere"></div>
+
+
+<div class="header bg-white pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a asp-controller="Doctor" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+                            <li class="breadcrumb-item"><a asp-controller="Doctor" asp-action="Schedule">Appointment</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Your Appointment(s)</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Total Patient</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.PatCounter</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-01.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i></span>
+                                <span class="text-nowrap">Till Today</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Today Patient</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.CountTodayPatient</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-02.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i></span>
+                                <span class="text-nowrap">Only Today: @DateTime.Now.Date.ToShortDateString()</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Appointments</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.CountStaffAppts</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-03.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i> </span>
+                                <span class="text-nowrap">Only Today: @DateTime.Now.Date.ToShortDateString()</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h4 class="mb-0">Appointments List</h4>
+                </div>
+                <div class="col text-right">
+                    <a asp-action="Schedule" class="btn btn-sm btn-primary">View Schedule</a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Date/Time</th>
+                        <th scope="col">Person Details</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var appointment in Model.Appointments)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <div>
+                                    <h6>@appointment.AppointmentDate.ToShortDateString()</h6>
+                                    <h6>@appointment.StartTime</h6>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="appointment-list">
+                                    <div class="profile-info-widget">
+                                        <img src="~/profileImage/@appointment.Patient.ImagePath" alt="User" class="rounded-thumbnail"
+                                             height="100" width="100" asp-append-version="true" />&nbsp;&nbsp;
+                                        <div class="profile-det-info">
+                                            <h6> @appointment.Patient.FirstName  &nbsp; @appointment.Patient.LastName</h6>
+                                            <div class="patient-details">
+                                                <h6>@appointment.Patient.AddressLine1 &nbsp; @appointment.Patient.AddressLine2</h6>
+                                                <h6>@appointment.Patient.Email</h6>
+                                                <h6>@appointment.Patient.PhoneNumber</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="appointment-actions align-self-md-center">
+                                    <button data-toggle="ajax-modal" data-target="#addPopUp" data-url="@Url.Action($"ViewAppointmentDetails/{appointment.AppointmentId}")" class="btn btn-sm btn-primary text-white">
+                                        <i class="zmdi zmdi-eye"></i> View
+                                    </button>
+                                    <a asp-action="VSigns" asp-controller="Examinations" class="btn btn-sm bg-dark text-white">
+                                        <i class="zmdi zmdi-superpowers"></i> Daignose Patient
+                                    </a>
+                                    <a asp-action="Done" asp-route-id="@appointment.AppointmentId" class="btn btn-sm bg-warning text-white">
+                                        <i class="zmdi zmdi-check"></i> Done
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

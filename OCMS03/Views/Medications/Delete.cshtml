@@ -1,0 +1,12 @@
+﻿@model OCMS03.Models.Content.Medication
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="MedicationId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+    </form>

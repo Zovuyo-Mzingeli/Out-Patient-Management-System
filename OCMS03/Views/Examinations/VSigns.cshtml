@@ -1,0 +1,119 @@
+﻿@model OCMS03.Models.ViewModels.MedicalViewModel
+
+@{
+    ViewData["Title"] = "PatientVitals";
+    Layout = "~/Views/Shared/_TabLayout.cshtml";
+}
+
+ <div class="header bg-white pb-1">
+     <div class="col-xl-12 order-xl-1">
+         <div class="pl-lg-4">
+             <div class="row">
+                 <div class="col-lg-12">
+                     <form asp-action="VSigns" method="post" enctype="multipart/form-data">
+                         <div asp-validation-summary="All" class="text-danger text-left"></div>
+                         <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                         <input type="hidden" asp-for="VitalsId" />
+                         <hr class="my-4"/>
+                         <div class="form-row">
+                             <div class="pl-lg-3 col-lg-12">
+                                 <div class="form-group">
+                                     <div class="pl-lg-4 form-inline row col-md-6">
+                                         <label class="form-control-label text-left" asp-for="PatientName">Patient Name:</label>
+                                     </div>
+                                     <div class="col-lg input-group">
+                                         <div class="input-group-prepend">
+                                             <div class="input-group-text"><i class="zmdi zmdi-account-o"></i></div>
+                                         </div>
+                                         <select asp-for="PatientName" class="form-control" asp-items="@Model.Patients">
+                                             <option value="" class="option">Select Patient Details</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <hr class="my-4" />
+                         <div class="form-inline row">
+                             <label asp-for="Temperature" class="col-sm-2 control-label">TEMPERTURE: </label>
+                             <div class="">
+                                 <input asp-for="Temperature" class="form-control-sm" />
+                             </div>
+                             <label asp-for="Temperature" class="col-form-label form-control-label">'Farenhiet</label>
+                         </div>
+                         <div class="form-inline row">
+                             <label asp-for="RepertoryRate" class="col-sm-2 control-label">REPERTORY RATE: </label>
+                             <div class="">
+                                 <input asp-for="RepertoryRate" class="form-control-sm" />
+                             </div>
+                             <label asp-for="RepertoryRate" class="col-form-label form-control-label">(/MIN)</label>
+                         </div>
+                         <div class="form-inline row">
+                             <label asp-for="BloodPressure" class="col-sm-2 control-label">BLOOD PRESSURE: </label>
+                             <div class="">
+                                 <input asp-for="BloodPressure" class="form-control-sm" />
+                             </div>
+                             <label asp-for="BloodPressure" class="col-form-label form-control-label">(SYS/DYS)(MMHG)</label>
+                         </div>
+                         <div class="form-inline row">
+                             <label asp-for="Pulse" class="col-sm-2 control-label">PULSE: </label>
+                             <div class="">
+                                 <input asp-for="Pulse" class="form-control-sm" />
+                             </div>
+                             <label asp-for="Pulse" class="col-form-label form-control-label">(/MIN)</label>
+                         </div>
+
+                         <div class="form-inline row">
+                             <label asp-for="SPO2" class="col-sm-2 control-label">SPO2: </label>
+                             <div class="">
+                                 <input asp-for="SPO2" class="form-control-sm" />
+                             </div>
+                             <label asp-for="SPO2" class="col-form-label form-control-label">%</label>
+                         </div>
+
+                         <div class="form-inline row">
+                             <label asp-for="Height" class="col-sm-2 control-label">HEIGHT: </label>
+                             <div class="">
+                                 <input asp-for="Height" class="form-control-sm" />
+                             </div>
+                             <label asp-for="Height" class="col-form-label form-control-label">CM</label>
+                         </div>
+
+                         <div class="form-inline row">
+                             <label asp-for="Weight" class="col-sm-2 control-label">WEIGHT: </label>
+                             <div class="">
+                                 <input asp-for="Weight" class="form-control-sm" />
+                             </div>
+                             <label asp-for="Weight" class="col-form-label form-control-label">KG</label>
+                         </div>
+
+                         <div class="form-inline row">
+                             <label asp-for="BMI" class="col-sm-2 control-label">BIM: </label>
+                             <div class="">
+                                 <input asp-for="BMI" class="form-control-sm" />
+                             </div>
+                             <label asp-for="BMI" class="col-form-label form-control-label">(WTO)</label>
+                         </div>
+
+                         <div class="form-inline row">
+                             <label asp-for="PainScore" class="col-sm-2 control-label">PAIN SCORE: </label>
+                             <div class="">
+                                 <input asp-for="PainScore" class="form-control-sm" />
+                             </div>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="submit" class="btn btn-outline-primary btn-icon-text  btn-lg">
+                                 <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                                 Create
+                             </button>
+                             <a asp-action="Index" class="btn btn-outline-secondary btn-icon-text  btn-lg">
+                                 <i class="mdi mdi-reload btn-icon-prepend"></i>
+                                 Back
+                             </a>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+

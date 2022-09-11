@@ -1,0 +1,233 @@
+﻿@model OCMS03.Models.Content.Appointment
+
+@{
+    ViewData["Title"] = "MakeAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-group">
+    <label class="display-block">Visiting For:</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="VistingTime" data-toggle="collapse" data-target="#collapseOne" value="New Comer" checked>
+        <label class="form-check-label" for="blog_active">
+            First Time
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="VistingTime" data-toggle="collapse" data-target="#collapseOne" value="Return">
+        <label class="form-check-label" for="blog_inactive">
+            Return
+        </label>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body" id="collapseOne">
+                <h6 class="heading-small text-muted  mb-4">Personal Details</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.FirstName">First Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                    </div>
+                                    <input asp-for="Patient.FirstName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.LastName">Last Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                    </div>
+                                    <input asp-for="Patient.LastName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.Title">Title</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-format-size"></i></div>
+                                    </div>
+                                    <select asp-for="Patient.Title" class="form-control">
+                                        <option value="" class="option">Select Title</option>
+                                        <option value="Mr" class="option">Mr</option>
+                                        <option value="Mrs" class="option">Mrs</option>
+                                        <option value="Miss" class="option">Miss</option>
+                                        <option value="Dr" class="option">Dr</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.Gender">Gender</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-male-female"></i></div>
+                                    </div>
+                                    <select asp-for="Patient.Gender" class="form-control">
+                                        <option value="" class="option">Select Gender</option>
+                                        <option value="Male" class="option">Male</option>
+                                        <option value="Female" class="option">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.Dob">Date Of Birth</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                    <input asp-for="Patient.Dob" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.Idnumber">ID No:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-id-card"></i></div>
+                                    </div>
+                                    <input asp-for="Patient.Idnumber" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="form-control-label" asp-for="Patient.PhoneNumber">Phone Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-phone"></i></div>
+                                </div>
+                                <input asp-for="Patient.PhoneNumber" class="form-control" />
+                            </div>
+                        </div>
+                   
+                    <div class="row">
+                        <div class="col-md-12 pb-3">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Patient.AddressLine1">AddressLine1</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-home"></i></div>
+                                    </div>
+                                    <input asp-for="Patient.AddressLine1" class="form-control" placeholder="Stress/House Number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4" />
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary submit-btn">
+                           Create Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-pane fade show active" id="per_details_tab">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="RequestAppointment">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+
+                        <h6 class="heading-small text-muted mb-4">Book Your Appointment</h6>
+                        <div class="pl-lg-4">
+
+                            <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-control-label" asp-for="ClinicId">Patient</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            </div>
+                                            <select asp-for="ClinicId" class="form-control" asp-items="ViewBag.ClinicId">
+                                                <option value="" class="option">Select Patient</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-control-label" asp-for="ClinicId">Clinic</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-map"></i></div>
+                                            </div>
+                                            <select asp-for="ClinicId" class="form-control" asp-items="ViewBag.ClinicId">
+                                                <option value="" class="option">Select Clinic</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" asp-for="AppointmentDate">Date </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            <input asp-for="AppointmentDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" asp-for="StartTime">Start Time</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                            </div>
+                                            <input asp-for="StartTime" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" asp-for="AppointmentDescription">Appointment Description</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-sticky-note"></i></div>
+                                            </div>
+                                            <input asp-for="AppointmentDescription" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary submit-btn">
+                                    Make Appointment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

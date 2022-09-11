@@ -1,0 +1,46 @@
+﻿@model OCMS03.Models.Content.Prescription
+
+@{
+    ViewData["Title"] = "PrescriptionDetails";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta asp-for="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="modal fade" id="addPopUp">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h5 class="modal-title text-white">Appointment Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="col-xl-12 order-xl-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="panel-body bio-graph-info">
+                                    <dl class="row text-right">
+                                        <dt class="col-sm-4">
+                                            <label class="control-label">Prescription Notes:</label>
+                                        </dt>
+                                        <dd class="col-sm-5 text-center">
+                                            <span class="col-sm-8 form-control-static">  @Html.DisplayFor(model => model.PrescriptionNotes)</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

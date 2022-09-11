@@ -1,0 +1,102 @@
+﻿@model OCMS03.Models.ViewModels.PatientViewModel.PatientAppointmentFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Scheduler" asp-action="RequestAppointment">Appointment</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Schedule Your Time</li>
+        </ol>
+    </nav>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-info fa-sm text-white"></i>
+    </a>
+</div>
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="RequestAppointment">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <h6 class="heading-small text-muted mb-4">Book Your Appointment</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="ClinicId">Clinic</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-pin"></i></div>
+                                    </div>
+                                    <select asp-for="ClinicId" class="form-control" asp-items="ViewBag.ClinicId">
+                                        <option value="" class="option">Select Clinic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="AppointmentDate">Date </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-alarm-off"></i></div>
+                                    </div>
+                                    <input asp-for="AppointmentDate" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="StartTime">Start Time</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-alarm-off"></i></div>
+                                    </div>
+                                    <input asp-for="StartTime" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="AppointmentDescription">Appointment Description</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-pin"></i></div>
+                                    </div>
+                                    <input asp-for="AppointmentDescription" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="pl-lg-4">
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        Make Appointment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

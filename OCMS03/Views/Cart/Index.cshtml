@@ -1,0 +1,147 @@
+﻿@model OCMS03.Models.ViewModels.PrescriptionFormViewModel
+
+@{
+    ViewData["Title"] = "PrescriptionDetails";
+    Layout = "~/Views/Shared/_PharmacistLayout.cshtml";
+}
+
+<div class="header bg-white pb-1">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a asp-controller="Pharmacist" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+                            <li class="breadcrumb-item"><a asp-controller="Pharmacist" asp-action="Index">Prescription</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Prescription List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    @*<div class="card-header">
+        <div class="row align-items-center">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    <label class="control-label">Prescription Notes:</label>
+                </dt>
+                <dd class="col-12">
+                    @Html.DisplayFor(model => model.PrescriptionNotes)
+                </dd>
+            </dl>
+            <div class="col-8">
+                <h3 class="mb-0"> </h3>
+            </div>
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="card-body col-6">
+            <div class="panel-body bio-graph-info">
+                <form asp-action="AddToCart" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="MedicationId" class="control-label">Prescribe Medication</label>
+                        <div class="input-group">
+                            <select asp-for="MedicationId" id="standard" class="form-control" asp-items="@ViewBag.MedicationId">
+                                <option value="" class="option">Select Patient Details</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+                    <h6 class="heading-small text-muted mb-4">Instructions</h6>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Dose" class="control-label">Dose</label>
+                            <input asp-for="Dose" id="Dose" class="form-control-success col-md-12" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Frequency" class="control-label">Frequency</label>
+                            <input asp-for="Frequency" id="Frequency" class="form-control-success col-md-12" />
+                        </div>
+                    </div>
+                    <div class="row pl-lg-3">
+                        <div class="form-group form-check col-md-4">
+                            <input class="form-check-input" type="checkbox" asp-for="Morning" id="Morning" />
+                            <label class="form-check-label">Morning</label>
+                        </div>
+                        <div class="form-group form-check col-md-4">
+                            <input class="form-check-input" type="checkbox" asp-for="Afternoon" id="Afternoon" />
+                            <label class="form-check-label">Afternoon</label>
+                        </div>
+                        <div class="form-group form-check col-md-4">
+                            <input class="form-check-input" type="checkbox" asp-for="Evening" id="Evening" />
+                            <label class="form-check-label">Evening</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Duration" class="control-label">Duration</label>
+                        <input asp-for="Duration" id="Duration" class="form-control-success col-md-12" />
+                    </div>
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                    <input type="hidden" asp-for="PatientId" />
+                    <input type="hidden" asp-for="StaffId" />
+                    <input type="hidden" asp-for="PrescriptionId" />
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Add">
+                        <a class="btn btn-lg btn-success" asp-action="Index" asp-controller="Pharmacist">Back</a>
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+        <div class="col-6" style="border-left:1px solid blue;">
+            <h3 class="text-center py-3">Patient Medication</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    @*@if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <th scope="row" colspan="6" class="text-center">No Medication Issued</th>
+                        </tr>
+                    }*@
+                    <tr>
+                        <th>Medication</th>
+                        <th>Frequency</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var line in Model.Cart.Lines)
+                    {
+                        <tr>
+                            <td class="text-center">@line.Medication.ProductName</td>
+                            <td class="text-left">@line.Duration</td>
+                            <td class="text-left">@line.Frequency</td>
+                            <td>
+                                <form asp-action="RemoveFromCart" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="MedicationId"
+                                           value="@line.Medication.MedicationId" />
+                                    <input type="hidden" name="returnUrl"
+                                           value="@Model.ReturnUrl" />
+                                    <button type="submit" class="btn btn-danger">
+                                        Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="card text-center py-4">
+                <a class="btn btn-primary" asp-action="Checkout" asp-controller="Pharmacist">
+                    Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+</div> 

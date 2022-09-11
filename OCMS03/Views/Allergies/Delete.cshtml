@@ -1,0 +1,13 @@
+﻿@model OCMS03.Models.Content.Allergy
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AllergyId" />
+       
+    </form>
